@@ -2,7 +2,7 @@
 中國的「大眾點評」的非官方重現
 
 ## 前端
-[存檔區](./tree/v0/commentory/)
+[存檔區](../../tree/v0/frontend/)
 
 ###### 項目
 - iOS app
@@ -13,14 +13,14 @@
 - Flutter
 
 ## API 接點
-[存檔區](./tree/v0/frontend/)
+[存檔區](../../tree/v0/endpoint/)
 
 ###### 技術工具
 - .NET 5
 - Razor pages
 
 ## 資料層
-[存檔區](./tree/v0/backend/)
+[存檔區](../../tree/v0/backend/)
 
 ###### 技術工具
 - PostgreSQL
@@ -29,5 +29,5 @@
 - poolboy
 
 ## 部署
-[存檔區](./tree/v0/deployment/dockerizing/)
+[存檔區](../../tree/v0/deployment/dockerizing/)
 
