@@ -16,8 +16,8 @@
 [存檔區](../../tree/v0/endpoint/)
 
 ###### 技術工具
-- .NET 5
-- Razor pages
+- .NET 5 SDK
+- .NET Core web API
 
 ## 資料層
 [存檔區](../../tree/v0/backend/)
