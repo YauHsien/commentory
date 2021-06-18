@@ -18,7 +18,7 @@
   ```
   info: Microsoft.Hosting.Lifetime[0]
       Now listening on: https://localhost:5001
-info: Microsoft.Hosting.Lifetime[0]
+  info: Microsoft.Hosting.Lifetime[0]
       Now listening on: http://localhost:5000
   ```
 - HTTP 客戶端，建議使用 [Insomnia](https://insomnia.rest/download) 。
