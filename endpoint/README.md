@@ -24,4 +24,4 @@
 - HTTP 客戶端，建議使用 [Insomnia](https://insomnia.rest/download) 。
   開發階段可將 Insomnia 的設定項目 `Settings > General > [x] "Validate certificates"` 解除勾選。
   等部署時，才接著解決 SSL certificate 的問題。
-- 本專案內定有[ Swagger 文件](https://localhost:5001/swagger/)：在瀏覽器開啟此網址以瀏覽。
+- 本專案內定有 Swagger 文件，位於 `https://localhost:5001/swagger/`：在瀏覽器開啟此網址以瀏覽。
