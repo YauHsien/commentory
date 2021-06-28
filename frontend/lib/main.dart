@@ -1,4 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'app_bar.dart';
+import 'home_page.dart';
+import 'page_journey.dart';
+import 'page_map.dart';
+import 'page_my.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,6 +53,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool _showNotch = true;
+  bool _showFab = true;
+  final FloatingActionButtonLocation _fabLocation = FloatingActionButtonLocation.centerDocked;
+  int? _buttons_state = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -59,55 +69,69 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  static final List<Widget> pages = <Widget>[
+    const HomePage(),
+    const PageJourney(),
+    const PageMap(),
+    const PageMy(),
+  ];
+
+  static final List<FloatingActionButtonLocation> centerLocations =
+  <FloatingActionButtonLocation>[
+    FloatingActionButtonLocation.centerDocked,
+    FloatingActionButtonLocation.centerFloat,
+  ];
+
+  Widget get _current_page => pages[_buttons_state!];
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      body: _current_page,
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      floatingActionButtonLocation: _fabLocation,
+      bottomNavigationBar: TheAppBar(
+        children: _TheAppBarButtons,
+        fabLocation: _fabLocation,
+        shape: _showNotch ? const CircularNotchedRectangle() : null,
+      ),
     );
   }
+
+  List<Widget> get _TheAppBarButtons
+  => <Widget>[
+    const Spacer(),
+    TheAppBarButton(
+      label: '首頁',
+      icon: _buttons_state == 0 ? const Icon(Icons.menu, color:Colors.deepOrange) : const Icon(Icons.menu),
+      onTap: (){ setState((){ _buttons_state = 0; }); },
+      tooltip: '首頁',
+    ),
+    const Spacer(),
+    TheAppBarButton(
+      label: '食記',
+      icon: _buttons_state == 1 ? const Icon(Icons.auto_stories_rounded, color:Colors.deepOrange) :  const Icon(Icons.auto_stories_rounded),
+      onTap: () { setState((){ _buttons_state = 1; }); },
+      tooltip: '網紅推薦內容',
+    ),
+    const Spacer(),
+    TheAppBarButton(
+      label: '美食地圖',
+      icon: _buttons_state == 2 ? const Icon(Icons.map_rounded, color:Colors.deepOrange) :  const Icon(Icons.map_rounded),
+      onTap: () { setState((){ _buttons_state = 2; }); },
+      tooltip: '美食地圖',
+    ),
+    const Spacer(),
+    TheAppBarButton(
+      label: '我的',
+      icon: _buttons_state == 3 ? const Icon(Icons.account_circle, color:Colors.deepOrange) :  const Icon(Icons.account_circle),
+      onTap: () { setState((){ _buttons_state = 3; }); },
+      tooltip: '我的',
+    ),
+    const Spacer(),
+  ];
 }
